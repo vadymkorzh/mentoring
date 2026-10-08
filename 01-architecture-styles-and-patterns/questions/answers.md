@@ -33,6 +33,10 @@ Additionally, SOA solutions usually make use of a single data storage while in M
 
 # [Open question] What does hybrid architectural style mean? Think of your current and previous projects and try to describe which architectural styles they most likely followed.
 
+A hybrid architectural style is a style which bears certain features or properties from two or more canonical ("pure") styles (Monolith, Microservices, Service-Oriented, etc.) It may be a monolithic thick client which uses data layer as a service (a kind of DBaaS). Or the same client may be a part of a Microservice architecture along with traditional granular services.
+
+I can remember a project I worked on some time ago. That was a desktop application that categorized massive loads of data. When we decided to get rid of a bottleneck via cloud-based workers (serverless Azure Functions), all the processing had been tackled in memory and quite often the application failed. Our pure monolithic desktop solution delegated a huge part of its workflow to the cloud computing, thus making the architecture hybrid.
+
 # Name several examples of the distributed architectures. What do ACID and BASE terms mean.
 
 # Name several use cases where Serverless architecture would be beneficial.
