@@ -39,4 +39,23 @@ I can remember a project I worked on some time ago. That was a desktop applicati
 
 # Name several examples of the distributed architectures. What do ACID and BASE terms mean.
 
+Distributed architectures - those where the components are hosted in separate processes, often on separate networked resources (physical machines, virtual machines, containers, etc.) - are the following:
+
+- Microservices (fleet of autonomous services)
+- Service-oriented (enterprise-wide apps, ESB)
+- Client-server (front-end, back-end)
+- Serverless (cloud-based workers)
+- Peer to peer (nodes in the network)
+
+ACID stands for Atomicity, Consistency, Isolation, Durability - set of mandatory properties of a reliable transaction processing. This principles are fundamental for traditional relational DBMSs:
+- Atomicity - either all or no operations succeed
+- Consistency - no constraint is violated as a result of the transaction
+- Isolation - parallel transactions don't interfere
+- Durability - successful transaction is guaranteed to be stored
+
+BASE stands for Basic Availability, SOft State, Eventual Consistency. It is a concept integral in distributed systems and NoSQL databases:
+- Basic Availability - every reqest receives a response
+- Soft State - state may change without direct user input (think background replication)
+- Eventual Consistency - data may be out of sync until the replication process is over
+
 # Name several use cases where Serverless architecture would be beneficial.
