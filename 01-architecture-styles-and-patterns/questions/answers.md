@@ -59,3 +59,12 @@ BASE stands for Basic Availability, SOft State, Eventual Consistency. It is a co
 - Eventual Consistency - data may be out of sync until the replication process is over
 
 # Name several use cases where Serverless architecture would be beneficial.
+
+Serverless architecture make use of cloud-hosted workers (aka Function as a Service), which require only business logic operations provided by the software engineers. THe infrastructure is managed by the vendor.
+
+This arcitecture flavor is beneficial in the following cases:
+
+- Backend operations are rather short-lasting and disparate (execution time is much less than wait time). As you pay only for the consumed resources, it is economically more attractive than an always-on backend.
+- There are unpredictable and rather frequent spikes in load. In this case the scalability facilities of Serverless products are outstanding.
+
+Another Serverless flavor - Backend as a Service - is beneficial if the service provides functionality which is well tested and maintained, and the consumer doesn't want to implement it himself (think an authentication service).
