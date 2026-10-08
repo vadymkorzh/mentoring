@@ -23,6 +23,14 @@ Pros:
 
 # What is the difference between SOA and Microservices?
 
+Both SOA and Microservices are architectural styles oriented on autonomous services with clear business responsibilities, however, in case of the latter the scope is more granular.
+
+Main difference between the styles is the scope of their application: SOA is integration- or enterprise-wide while Microservices is application-wide. 
+
+One of other differences lays in the interprocess communication medium: in SOA it's a so-called Enterprise Service Bus, a centralised massive layer often loaded with business logic; in Microservices HTTP or lightweight messaging protocols are used (no business logic lives in the communication).
+
+Additionally, SOA solutions usually make use of a single data storage while in Microservices each service has its own persistence.
+
 # [Open question] What does hybrid architectural style mean? Think of your current and previous projects and try to describe which architectural styles they most likely followed.
 
 # Name several examples of the distributed architectures. What do ACID and BASE terms mean.
