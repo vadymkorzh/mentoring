@@ -31,6 +31,12 @@ Anemic Model (anti-)pattern is a way to build domain model so that the state res
 
 # What are architectural anti-patterns? Discuss at least three, think of any on your current or previous projects.
 
+Architectural anti-patterns are well-established solutions to existing software development problems which are highly discouraged for use by industry experts and practitioners due to the ramifications they introduce, e.g., increased complexity, poor extensibility, tight coupling etc.
 
+One of the most famous anti-patterns is Big Ball of Mud. It's a very likely result of neglecting best practices and patterns during development. Such type of codebase has low cohesion, high coupling, it's very hard to maintain, test, understand.
+
+In case of Layered Architecture, quite often there are signs of so called Lasagna Architecture anti-pattern present. This is a result of pedantic rather than pragmatic following the principles of Layered Architecture, i.e., the rule that a layer must directly depend ONLY on the layer right below it. This anti-pattern often leads to multitude of proxy-objects or services which exist solely to propagate data or calls between layers.
+
+Thirdly, there is Golden Hammer anti-pattern, which presume unjustified use of some technology (often over-hyped) just because it is popular or works in some other case. This approach may lead to overengineering, when a simple solution is neglected and a mass of unnecessary structure is added.
 
 # What do Testability, Extensibility and Scalability NFRs mean. How would you ensure you reached them? Does Clean Architecture cover these NFRs?
