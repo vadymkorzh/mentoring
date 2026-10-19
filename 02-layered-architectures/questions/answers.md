@@ -24,7 +24,10 @@ On the other hand, A -> C dependency is permitted in the Layered Architecture, i
 
 # Is DDD a type of layered architecture? What is Anemic model? Is it really an antipattern?
 
+Domain-Driven Development shouldn't be called a type of layered architecture, it is rather a software design philosophy, not a structural architecture.
+DDD provides building blocks for the buisiness logic and guidelines how to organize the core of the application, and it isn't focused on concrete layers and dependency orientation concerns.
 
+Anemic Model (anti-)pattern is a way to build domain model so that the state resides in a plain object, and the logic associated is placed somewhere else (typically, in a separate service). Proponents of OOP claim that this pattern is a direct violation of Encapsulation (keeping data and logic as close as possible), so it's in fact an anti-pattern. However, Anemic Model is widely used in modern frameworks, e.g., entities in ORMs, DTOs, plain CRUD objects. Generally, it depends on the complexity of the solution whether you should avoid the pattern; if the domain is simple, it is more pragmatic to embrace the Anemic Model pattern.
 
 # What are architectural anti-patterns? Discuss at least three, think of any on your current or previous projects.
 
