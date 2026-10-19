@@ -40,3 +40,11 @@ In case of Layered Architecture, quite often there are signs of so called Lasagn
 Thirdly, there is Golden Hammer anti-pattern, which presume unjustified use of some technology (often over-hyped) just because it is popular or works in some other case. This approach may lead to overengineering, when a simple solution is neglected and a mass of unnecessary structure is added.
 
 # What do Testability, Extensibility and Scalability NFRs mean. How would you ensure you reached them? Does Clean Architecture cover these NFRs?
+
+A system is testable if it's functionality and codebase favors extensiv creation of different kinds of tests (unit, integration, end-to-end). You may ensure this quality if the system is modular, it isn't tightly coupled and its cohesion is high (following SOLID design principles is generally advised). 
+
+Extensibility stands for a quality of a system which easily accepts new feature addition: old code stays intact; ideally, only new code is added (see Open-Closed Principle). It is ensured by using same best practices (patterns, SOLID, etc.), developing a plug-in extension system, favoring configuration over hard-coding.
+
+Scalable solution is ready for an influx of inbound requests or data. It is easily scaled out (horizontally) or up (vertically), responding to demand without significant interruptions and slow-downs. Usually, stateless applications are considered ideal for scaling; architectural choice is also important (see Microservices or Serverless style). Additionally, load balancers may be used to regulate the request rate.
+
+Thanks to the Dependency Inversion Principle, Clean Architecture is built with testability in mind: dependencies go strictly down, services can be easily mocked. In addition, since the Open-Closed Principle is also baked into the architecture, adding new funcionality (extending) to the system is straighforward and facilitated by design. However, scalability isn't directly incorporated into the approach BUT it is made highly simpler to implement because of high cohesion and modularity promoted, what makes the solution Microservices- or Serverless-ready.
