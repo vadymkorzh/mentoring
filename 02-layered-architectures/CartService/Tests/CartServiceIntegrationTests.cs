@@ -19,15 +19,17 @@ public class CartServiceIntegrationTests
     [Fact]
     public async Task AddItemToCartAsync_RealRepository_ItemIsPersistedAndRetrievableFromNewConnection()
     {
-        var seed = new LiteDbCartRepository();
-        await seed.SaveCartAsync(new Cart(TestCartId));
+        string databasePath = Path.Combine(Path.GetTempPath(), $"cart-service-{Guid.NewGuid()}.db");
 
         try
         {
-            var sut = new BLL.CartService(new LiteDbCartRepository());
+            var seed = new LiteDbCartRepository(databasePath);
+            await seed.SaveCartAsync(new Cart(TestCartId));
+
+            var sut = new BLL.CartService(new LiteDbCartRepository(databasePath));
             await sut.AddItemToCartAsync(TestCartId, CreateItem(1));
 
-            var verifier = new BLL.CartService(new LiteDbCartRepository());
+            var verifier = new BLL.CartService(new LiteDbCartRepository(databasePath));
             IList<CartItem>? items = await verifier.GetCartItemsAsync(TestCartId);
 
             Assert.NotNull(items);
@@ -36,7 +38,7 @@ public class CartServiceIntegrationTests
         }
         finally
         {
-            await seed.SaveCartAsync(new Cart(TestCartId));
+            File.Delete(databasePath);
         }
     }
 }
