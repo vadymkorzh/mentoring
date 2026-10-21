@@ -8,7 +8,7 @@ public class CartServiceUnitTests
     private static CartItem CreateItem(int id) => new()
     {
         Id = id,
-        Name = id,
+        Name = "Item",
         Price = 9.99m,
         Quantity = 1
     };

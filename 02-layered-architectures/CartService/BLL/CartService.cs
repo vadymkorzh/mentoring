@@ -17,13 +17,22 @@ public class CartService(ICartRepository cartRepository) : ICartService
     public async Task AddItemToCartAsync(int cartId, CartItem item)
     {
         Cart? cart = await _cartRepository.GetCartAsync(cartId);
-        cart?.AddItem(item);
+        if (cart is not null)
+        {
+            cart.AddItem(item);
+            await _cartRepository.SaveCartAsync(cart);
+        }
     }
 
     public async Task<bool> RemoveItemFromCartAsync(int cartId, int itemId)
     {
         Cart? cart = await _cartRepository.GetCartAsync(cartId);
-        
-        return cart?.RemoveItem(itemId) ?? false;
+        if (cart is not null && cart.RemoveItem(itemId))
+        {
+            await _cartRepository.SaveCartAsync(cart);
+            return true;
+        }
+
+        return false;
     }
 }
