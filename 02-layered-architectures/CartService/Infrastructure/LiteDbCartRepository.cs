@@ -6,6 +6,26 @@ namespace CartService.Infrastructure;
 
 public class LiteDbCartRepository : ICartRepository
 {
+    static LiteDbCartRepository()
+    {
+        BsonMapper.Global.RegisterType<Cart>(
+            cart => new BsonDocument
+            {
+                ["cartId"] = cart.Id,
+                ["items"] = new BsonArray(cart.GetItems().Select(item => BsonMapper.Global.ToDocument(item)))
+            },
+            doc =>
+            {
+                var cart = new Cart(doc["cartId"].AsInt32);
+                foreach (BsonValue itemValue in doc["items"].AsArray)
+                {
+                    cart.AddItem(BsonMapper.Global.ToObject<CartItem>(itemValue.AsDocument));
+                }
+
+                return cart;
+            });
+    }
+
     public Task<Cart?> GetCartAsync(int cartId)
     {
         using var db = new LiteDatabase("cart-service.db");
