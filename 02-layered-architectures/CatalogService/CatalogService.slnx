@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="NFRs.md" />
+  </Folder>
   <Project Path="CatalogService.BLL/CatalogService.BLL.csproj" />
   <Project Path="CatalogService.DAL/CatalogService.DAL.csproj" />
   <Project Path="CatalogService.Infrastructure/CatalogService.Infrastructure.csproj" />
