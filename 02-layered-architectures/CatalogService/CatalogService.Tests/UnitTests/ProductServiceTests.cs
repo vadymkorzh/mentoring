@@ -5,7 +5,7 @@ using CatalogService.DAL.Services;
 using Moq;
 using Xunit;
 
-namespace CatalogService.Tests;
+namespace CatalogService.Tests.UnitTests;
 
 public class ProductServiceTests
 {
