@@ -3,10 +3,15 @@
 Basically, REST (REpresentative State Transfer) is an architectural style for distributed systems, defined in the dissertation written by Roy Fielding in 2000. The work defines 6 constraints which any RESTful system must follow (in fact, first 5 are mandatory whilst the last is optional):
 
 1. Uniform interface: consistent uniform interface for client/server interaction must be defined
+
 1. Client/server interaction: RESTful systems must be implemented using this pattern
+
 1. Stateless: servers mustn't persist state between calls
+
 1. Cacheable: RESTful responses must label themselves cacheable or not
+
 1. Layered system: interaction is separated in layers, each layer interacts only with the layer immediately below it
+
 1. Code on demand: servers may send code to clients
 
 ### 2. HTTP Request Methods (the difference) and HTTP Response codes. What is idempotency? Is HTTP the only protocol supported by the REST?
@@ -25,7 +30,14 @@ REST doesn't mandate usage of HTTP. Every interface that follows the six constra
 
 ### 4. How can caching be organized in RESTful services?
 
+Caches may exist in any place between the client and the service, e.g., it may be the local (browser) cache, proxy cache, or reverse proxy (gateway, load balancer) cache. Real systems ofther have a series of caches instead of a single one.
 
+In case of the most used REST approach (via HTTP), there are following rules applied to caching policies:
+
+- GET responses are cacheable by default (and usually are)
+- POST responses aren't cacheable by default (special headers are needed to enable caching)
+- PUT, PATCH, DELETE - not cacheable
+- cacheability can be overriden by specific HTTP headers: Expires, Cache-Control, ETag, Last-Modified
 
 ### 5. How can versioning be organized in RESTful services?
 
