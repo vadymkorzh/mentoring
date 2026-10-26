@@ -17,7 +17,11 @@ REST doesn't mandate usage of HTTP. Every interface that follows the six constra
 
 ### 3. What are the advantages of statelessness in RESTful services?
 
+1. In the main, statelessness facilitates scalability of RESTful services: as long as there is no state persisted on the server side, it is possible to spawn any number of instances of the service to process increased load.
 
+1. Additionally, statelessness makes caching much more transparent, since there is no behind-the-scene context associated with responses to be cached. As long as caching is easier, the performance is better.
+
+1. Thirdly, since the state is managed only on the client side, the complexity of the service implementation is reduced. It makes it more maintainable and understandable.
 
 ### 4. How can caching be organized in RESTful services?
 
