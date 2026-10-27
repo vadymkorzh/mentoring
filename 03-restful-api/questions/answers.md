@@ -16,9 +16,22 @@ Basically, REST (REpresentative State Transfer) is an architectural style for di
 
 ### 2. HTTP Request Methods (the difference) and HTTP Response codes. What is idempotency? Is HTTP the only protocol supported by the REST?
 
-Idempotency is a ...
+- Mainly used HTTP request methods are GET, POST, PUT, PATCH, and DELETE. Some other include HEAD, OPTIONS, QUERY. 
 
-REST doesn't mandate usage of HTTP. Every interface that follows the six constraints of REST (described in 1) can be called RESTful. However, in practice HTTP is used as the application level protocol in the majority of REST implementations.
+    The methods may be classified in various ways. One way is by safety: GET is a safe method, POST, PUT, PATCH and DELETE are not. Safe methods/operations don't alter the state of the system.
+
+    Another way to classify the methods is by idempotency: GET, PUT, DELETE are idempotent, POST and PATCH are generally not.
+
+- Standard HTTP response codes consist of three digit (XXX form) and semantically divided into five groups:
+    - 1xx - Informational
+    - 2xx - Success (200 OK, 204 No Content, etc.)
+    - 3xx - Redirection (300 Multiple Choices, 302 Found, etc.)
+    - 4xx - Client Error (400 Bad Request, 404 Not Found, etc.)
+    - 5xx - Server Error (500 Internal Server Error, 503 Service Unavailable, etc.)
+
+- Idempotency is a property of a REST operation that signifies that the result of an operation stays exactly the same if the operation is accomplished just once or many times sequentially with the identical attributes. With REST over HTTP, operations with GET, PUT, HEAD, OPTIONS, DELETE verbs are idempotent while POST and PATCH aren't.
+
+- REST doesn't mandate usage of HTTP. Every interface that follows the six constraints of REST (described in 1) can be called RESTful. However, in practice HTTP is used as the application level protocol in the majority of REST implementations.
 
 ### 3. What are the advantages of statelessness in RESTful services?
 
