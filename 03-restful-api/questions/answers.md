@@ -58,7 +58,13 @@ In case of the most used REST approach (via HTTP), there are following rules app
 
 ### 6. What are the best practices of resource naming?
 
+There are several guidelines for resource naming in REST style:
 
+1. Resources should use nouns for names (singular for specific resources, plural for collections)
+1. Verbs in resource IDs (URIs) should be avoided
+1. Trailing slashes (/) in URIs are also discouraged
+1. It is better to use hyphens (-) over underscores (_) in resource IDs
+1. Parts of URI should be spelled in lowercase
 
 ### 7. What are OpenAPI and Swagger? What implementations/libraries for .NET exist? When would you prefer to generate API docs automatically and when manually?
 
