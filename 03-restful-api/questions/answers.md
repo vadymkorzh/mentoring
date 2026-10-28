@@ -54,7 +54,14 @@ In case of the most used REST approach (via HTTP), there are following rules app
 
 ### 5. How can versioning be organized in RESTful services?
 
+Versioning in REST makes breaking changes introduction much safer and easier. 
 
+There are several different approaches to versioning for HTTP REST services:
+
+- Path versioning (/v1/users -> /v2/users): deemed to be optimal for most projects; controversial as violates REST prinicple of stable resource identifier
+- Subdomain versioning (v1.example.com -> v2.example.com): incurs some DNS or CORS configuration overhead
+- Query string versioning (/users?v=1 -> /users?v=2): generally discouraged (caching issues; semantic issues)
+- Header versioning (X-API-Version: v1 or Accept: application/foo.v1): more complicated for clients; harder to test
 
 ### 6. What are the best practices of resource naming?
 
