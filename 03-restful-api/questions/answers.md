@@ -83,7 +83,14 @@ There are several guidelines for resource naming in REST style:
 
 ### 9. What is Richardson Maturity Model? Is it always a good idea to reach the 3rd level of maturity?
 
+Richardson Maturity Model (aka RMM) consists of four levels of RESTful service maturity:
 
+- L0: single URI for all resources (not necessarily named as a noun) + single verb (typically, POST) are used (procedural call, aka RPC)
+- L1: multiple URIs (for different types of resources; every resource is uniquely identified) + still a single verb (again, typically POST)
+- L2: resources are uniquely idenified with URIs + HTTP verbs are used semantically for CRUD operations
+- L3: this level adds so called HATEOAS (Hypermedia As The Engine Of Application State) to L2 (each response carries navigational links to related resources and actions, aka hypermedia controls)
+
+Seemingly, most real-world RESTful services operate on L2, and it is quite enough for the customers. This level relies on documentation extensively, as there is no hypermedia for automatic discoverability (brought by L3). However, L3's distinctive feature add significant complexity, which burdens both clients and server maintainers, and this 'perfect' level of RESTful maturity is mainly neglected.
 
 ### 10. What does pros and cons REST have in comparison with other web API types?
 
