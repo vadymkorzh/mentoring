@@ -86,7 +86,9 @@ Automatic API documentation presentation works well when the API is not publishe
 
 ### 8. What is OData? When will you choose to follow it and when not?
 
+OData stands for Open Data Protocol, and it is a standard that sets up rules for uniform provision and consumption of REST services. OData's particular features are built-in querying facilities that might be included directly in the URI (filtering, aggregation, etc.)
 
+This protocol is widely used by enterprises via Microsoft or SAP products, and it is quiete reasonable choice for building complex enterprise systems. However, for simpler models and more lightweight services REST or GraphQL might be more appropriate. 
 
 ### 9. What is Richardson Maturity Model? Is it always a good idea to reach the 3rd level of maturity?
 
