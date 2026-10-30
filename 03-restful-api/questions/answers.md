@@ -75,7 +75,14 @@ There are several guidelines for resource naming in REST style:
 
 ### 7. What are OpenAPI and Swagger? What implementations/libraries for .NET exist? When would you prefer to generate API docs automatically and when manually?
 
+OpenAPI and its historical precursor Swagger are both language-agnostics standards (or specifications) for describing HTTP APIs. Nowadays, Swagger is used as an umbrella term for a suite of both open-source and commercial products which implement OpenAPI specification, e.g. Swagger UI.
 
+Since .NET 9, the ecosystem (ASP.NET Core) has a built-on OpenAPI support (Microsoft-managed package). Before that, Swashbuckle and NSwag packages were used to utilize Swagger/OpenAPI features. Both packages are still available:
+- Swashbuckle: adds Swagger JSON document generation and Swagger UI utility
+- NSwag: generate Swagger JSON and Swagger UI / ReDoc UI + client code generation (TS, Angular, C#, etc.)
+NSwag is actively supported, Swashbuckle is almost deprecated and should be avoided.  
+
+Automatic API documentation presentation works well when the API is not published to end-users for consumption and consulting. Some internal APIs can tolerate lack of gloss and details. However, pure manual API documentation is also cumbersome and hard to maintain. So, generally and pragmatically, a hybrid approach should be utilized: quick automatic generation for endpoint/parameter/request/response description plus human-created texts for quickstarts/tutorials/edge cases.
 
 ### 8. What is OData? When will you choose to follow it and when not?
 
