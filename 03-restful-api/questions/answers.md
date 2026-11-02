@@ -103,4 +103,18 @@ Seemingly, most real-world RESTful services operate on L2, and it is quite enoug
 
 ### 10. What does pros and cons REST have in comparison with other web API types?
 
+I'm going to compare REST web API with gRPC, GraphQL and WebSockets - the key alternatives for the most widely used style.
 
+REST vs. gRPC:
+- REST APIs generally use pull model (asking for result) while gRPC provides multiplexing (one- and two-side streaming)
+- gRPC messaging is quicker as the payload is binary (therefore, more compact)
+- There is a toolset of code-generators for gRPC and all the major client- and server-side technologies
+- Binary payload of gRPC messages aren't human-readable which makes debugging and testing harder
+
+REST vs. GraphQL:
+- REST is generally more appropriate for simpler CRUD APIs while rich GraphQL query support makes is better for complex data aggregation
+- As GraphQL requests are all POST and made to a single endpoint, caching becomes difficult compared to plain REST
+
+REST vs. WebSockets:
+- WebSockets are more appropriate for live systems with low latency: exchanges, live scores, gaming etc
+- WebSockets lack statuses, caching abilities present in HTTP REST
