@@ -1,4 +1,5 @@
-﻿using CatalogService.BLL.Exceptions;
+﻿using Asp.Versioning;
+using CatalogService.BLL.Exceptions;
 using CatalogService.BLL.Services;
 using CatalogService.Web.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CatalogService.Web.Controllers;
 
 [ApiController]
+[ApiVersion("1.0")]
 [Route("categories")]
 public class CategoryController(CategoryService categoryService) : ControllerBase
 {

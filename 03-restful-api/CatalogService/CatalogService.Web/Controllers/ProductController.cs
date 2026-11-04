@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using CatalogService.BLL.Exceptions;
 using CatalogService.BLL.Services;
 using CatalogService.Web.Dtos;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CatalogService.Web.Controllers;
 
 [ApiController]
+[ApiVersion("1.0")]
 [Route("products")]
 public class ProductController(ProductService productService) : ControllerBase
 {
