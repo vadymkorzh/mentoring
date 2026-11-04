@@ -8,8 +8,6 @@ public class ProductService(IRepository<Product> products)
 {
     private readonly IRepository<Product> _products = products;
 
-    public Task<IReadOnlyList<Product>> ListAsync() => _products.ListAsync();
-
     public Task<PagedResult<Product>> ListAsync(int page, int pageSize, int? categoryId) =>
         _products.ListAsync(page, pageSize, categoryId.HasValue ? p => p.CategoryId == categoryId.Value : null);
 
