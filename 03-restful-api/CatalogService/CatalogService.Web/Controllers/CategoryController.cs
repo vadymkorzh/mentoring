@@ -3,7 +3,7 @@ using CatalogService.BLL.Services;
 using CatalogService.Web.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CatalogService.Web;
+namespace CatalogService.Web.Controllers;
 
 [ApiController]
 [Route("categories")]

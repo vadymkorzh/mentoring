@@ -3,7 +3,7 @@ using CatalogService.BLL.Services;
 using CatalogService.Web.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CatalogService.Web;
+namespace CatalogService.Web.Controllers;
 
 [ApiController]
 [Route("products")]
@@ -24,6 +24,12 @@ public class ProductController(ProductService productService) : ControllerBase
     {
         var product = await _productService.AddAsync(request.ToEntity());
         var dto = product.ToDto();
+        dto.Links =
+        [
+            new LinkDto { Rel = "update", Href = $"/products/{dto.Id}", Method = "PUT" },
+            new LinkDto { Rel = "delete", Href = $"/products/{dto.Id}", Method = "DELETE" },
+            new LinkDto { Rel = "collection", Href = "/products", Method = "GET" }
+        ];
 
         return Created($"/products/{dto.Id}", dto);
     }
