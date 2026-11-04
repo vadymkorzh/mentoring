@@ -11,7 +11,7 @@ public class ProductService(IRepository<Product> products)
     public Task<IReadOnlyList<Product>> ListAsync() => _products.ListAsync();
 
     public Task<PagedResult<Product>> ListAsync(int page, int pageSize, int? categoryId) =>
-        _products.ListAsync(page - 1, pageSize, categoryId.HasValue ? p => p.CategoryId == categoryId.Value : null);
+        _products.ListAsync(page, pageSize, categoryId.HasValue ? p => p.CategoryId == categoryId.Value : null);
 
     public Task<Product> AddAsync(Product product) => _products.AddAsync(product);
 
