@@ -9,4 +9,6 @@ public class CategoryDto
     public int? ParentId { get; set; }
 
     public string? ImageUri { get; set; }
+
+    public List<LinkDto> Links { get; set; } = [];
 }

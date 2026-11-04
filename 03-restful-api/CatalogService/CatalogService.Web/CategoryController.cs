@@ -24,6 +24,12 @@ public class CategoryController(CategoryService categoryService) : ControllerBas
     {
         var category = await _categoryService.AddAsync(request.ToEntity());
         var dto = category.ToDto();
+        dto.Links =
+        [
+            new LinkDto { Rel = "update", Href = $"/categories/{dto.Id}", Method = "PUT" },
+            new LinkDto { Rel = "delete", Href = $"/categories/{dto.Id}", Method = "DELETE" },
+            new LinkDto { Rel = "collection", Href = "/categories", Method = "GET" }
+        ];
 
         return Created($"/categories/{dto.Id}", dto);
     }
