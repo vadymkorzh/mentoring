@@ -2,7 +2,7 @@
 
 namespace CatalogService.DAL.Models;
 
-public class Category
+public class Category : IEntity
 {
     public int Id { get; set; }
 
