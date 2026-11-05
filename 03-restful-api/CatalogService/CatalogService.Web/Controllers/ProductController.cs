@@ -8,7 +8,7 @@ namespace CatalogService.Web.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
-[Route("products")]
+[Route("api/v{version:apiVersion}/products")]
 public class ProductController(ProductService productService) : ControllerBase
 {
     private readonly ProductService _productService = productService;

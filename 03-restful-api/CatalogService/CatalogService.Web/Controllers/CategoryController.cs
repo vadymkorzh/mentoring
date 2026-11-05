@@ -8,7 +8,8 @@ namespace CatalogService.Web.Controllers;
 
 [ApiController]
 [ApiVersion("1.0")]
-[Route("categories")]
+[Route("api/v{version:apiVersion}/categories")]
+
 public class CategoryController(CategoryService categoryService) : ControllerBase
 {
     private readonly CategoryService _categoryService = categoryService;
