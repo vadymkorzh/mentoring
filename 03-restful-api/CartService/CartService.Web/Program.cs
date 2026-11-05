@@ -1,3 +1,4 @@
+using CartService.BLL;
 using CartService.DAL;
 using CartService.Infrastructure;
 
@@ -7,6 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<ICartRepository, LiteDbCartRepository>();
+builder.Services.AddScoped<CartManager>();
 
 var app = builder.Build();
 
