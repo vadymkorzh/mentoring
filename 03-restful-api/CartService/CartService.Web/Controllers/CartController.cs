@@ -1,4 +1,5 @@
-﻿using CartService.BLL;
+﻿using Asp.Versioning;
+using CartService.BLL;
 using CartService.DAL.Models;
 using CartService.Web.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -6,13 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace CartService.Web.Controllers;
 
 [ApiController]
-[Route("carts")]
+[ApiVersion("1.0")]
+[ApiVersion("2.0")]
+[Route("api/v{version:apiVersion}/carts")]
 public class CartController(CartManager cartManager) : ControllerBase
 {
     private readonly CartManager _cartManager = cartManager;
 
     [HttpGet("{cartKey}")]
-    public async Task<IActionResult> GetCartInfo(string cartKey)
+    [MapToApiVersion("1.0")]
+    public async Task<IActionResult> GetCartInfoV1(string cartKey)
     {
         IList<CartItem>? items = await _cartManager.GetCartItemsAsync(cartKey);
         if (items is null)
@@ -29,12 +33,35 @@ public class CartController(CartManager cartManager) : ControllerBase
         return Ok(cart);
     }
 
+    [HttpGet("{cartKey}")]
+    [MapToApiVersion("2.0")]
+    public async Task<IActionResult> GetCartInfoV2(string cartKey)
+    {
+        IList<CartItem>? items = await _cartManager.GetCartItemsAsync(cartKey);
+        if (items is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(items);
+    }
+
     [HttpPost("{cartKey}/items")]
-    public async Task<IActionResult> AddItemToCart(string cartKey, [FromBody] CartItemDto item)
+    [MapToApiVersion("1.0")]
+    public async Task<IActionResult> AddItemToCartV1(string cartKey, [FromBody] CartItemDto item)
     {
         await _cartManager.AddItemToCartAsync(cartKey, item.ToModel());
 
-        return CreatedAtAction(nameof(GetCartInfo), new { cartKey }, item);
+        return CreatedAtAction(nameof(GetCartInfoV1), new { cartKey }, item);
+    }
+
+    [HttpPost("{cartKey}/items")]
+    [MapToApiVersion("2.0")]
+    public async Task<IActionResult> AddItemToCartV2(string cartKey, [FromBody] CartItemDto item)
+    {
+        await _cartManager.AddItemToCartAsync(cartKey, item.ToModel());
+
+        return CreatedAtAction(nameof(GetCartInfoV2), new { cartKey }, item);
     }
 
     [HttpDelete("{cartKey}/items/{itemId:int}")]
