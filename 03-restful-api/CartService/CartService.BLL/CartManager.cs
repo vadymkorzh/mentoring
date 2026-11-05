@@ -16,12 +16,9 @@ public class CartManager(ICartRepository cartRepository)
 
     public async Task AddItemToCartAsync(string cartKey, CartItem item)
     {
-        Cart? cart = await _cartRepository.GetCartAsync(cartKey);
-        if (cart is not null)
-        {
-            cart.AddItem(item);
-            await _cartRepository.SaveCartAsync(cart);
-        }
+        Cart cart = await _cartRepository.GetCartAsync(cartKey) ?? new Cart(cartKey);
+        cart.AddItem(item);
+        await _cartRepository.SaveCartAsync(cart);
     }
 
     public async Task<bool> RemoveItemFromCartAsync(string cartKey, int itemId)

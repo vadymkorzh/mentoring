@@ -33,7 +33,7 @@ public class LiteDbCartRepository(string databasePath = "cart-service.db") : ICa
         using var db = new LiteDatabase(_databasePath);
         var carts = db.GetCollection<Cart>("carts");
 
-        return Task.FromResult<Cart?>(carts.Query().Where(x => x.Key == key).FirstOrDefault());
+        return Task.FromResult<Cart?>(carts.FindById(key));
     }
 
     public Task<bool> SaveCartAsync(Cart cart)
