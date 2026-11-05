@@ -1,7 +1,9 @@
 using Asp.Versioning;
+using Asp.Versioning.ApiExplorer;
 using CartService.BLL;
 using CartService.DAL;
 using CartService.Infrastructure;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,15 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi().WithDocumentPerVersion();
+
+    app.MapScalarApiReference(options =>
+    {
+        var versionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+        foreach (ApiVersionDescription description in versionProvider.ApiVersionDescriptions)
+        {
+            options.AddDocument(description.GroupName, $"Cart Service {description.GroupName}", $"/openapi/{description.GroupName}.json");
+        }
+    });
 }
 
 app.UseHttpsRedirection();
