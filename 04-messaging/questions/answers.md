@@ -13,7 +13,35 @@ Event Based Architecture is another message-driven architectural pattern highly 
 
 ### 2. What is Message Broker? How do message brokers work?
 
-Message Broker is a software solution which facilitates asynchronous message-based communication between services, systems, or applications. Messages are reliably and durably collected in message queues, and the solution must guarantee message delivery. In addition, data routing, message translation, client state management features are supplied by the broker.
+Message Broker is a software solution which facilitates asynchronous message-based communication between services, systems, or applications. 
+
+Messages are reliably and durably collected in message queues, and the solution must guarantee message delivery. In addition, data routing, message translation, client state management features are supplied by the broker.
+
+Main part of any message broker are message queues which accumulate data in form of messages, and message managers which handle the validation, routing, persistence and delivery of messages.
+
+Message delivery is often implemented using receipts: a message is retained in the queue until the consumer reliably admits its successful processing. Otherwise, the message is returned to the queue and scheduled for a retry. If a message isn't processed after some configured amount of time or number of retries, it becomes poisonous and is placed in the Dead Letter Queue.
+
+### 3. When should you use message brokers?
+
+Message brokers may be used when reliable communication, fault-tolerance, and delivery guarantees are required. 
+
+Possible use cases: 
+- Microservices communication: messaging facilitates loose coupling, extensibility, scalability, and maintainability.
+- Mobile notifications: pub/sub model is a perfect match for handing message broadcasting.
+- Long-running tasks: because of the asynchronous nature of messaging, there will be no blocking calls.
+- Crucial business tasks: message brokers are resilient and guarantee message delivery in case of failures.
+
+### 4. Name and describe any distribution pattern.
+
+There are two main message distribution models used in MBs:
+- Point-to-point (1-to-1 relationship): one producer is bound to a single consumer.
+- Publish/Subscribe (1-to-many relationship): a producer (publisher) emits a message (to a so-called topic), which may be consumed by 0 or more interested subscribers. 
+
+In case of Pub/Sub model, producers post messages to a configured destination (a topic), consumers subscribe to topics they are interested in, and the message broker is responsible for routing and delivering messages to configured topics. This model allows for close-to-ideal decoupling of producers and consumers as neither side know anything about its counterpart(s).
+
+The most widely known implementation of the pattern is Apache Kafka. RabbitMQ also provides this model via Topic/Fanout feature.
+
+### 5. What are the advantages and disadvantages of using message broker?
 
 Advantages of MBs: 
 - Reliablity via delivery guarantees (message persistence, mechanism of retries, and dead letter queue)
@@ -23,22 +51,6 @@ Advantages of MBs:
 Disadvantages:
 - Added complexity to the architecture (as another piece of software is added as middleware)
 - More effortful debugging and logging due to the distributed and asynchronous nature
-
-There are two main message distribution models used in MBs:
-- Point-to-point (1-to-1 relationship): one producer is bound to a single consumer
-- Publish/Subscribe (1-to-many relationship): a producer (publisher) emits a message (to a so-called topic), which may be consumed by 0 or more interested subscribers
-
-### 3. When should you use message brokers?
-
-
-
-### 4. Name and describe any distribution pattern.
-
-
-
-### 5. What are the advantages and disadvantages of using message broker?
-
-
 
 ### 6. What is the difference between Queue and Topic?
 
