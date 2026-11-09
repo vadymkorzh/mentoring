@@ -8,12 +8,25 @@ MBA finds most use cases in reliable asynchronous processing, when a task must b
 
 Event Based Architecture is another message-driven architectural pattern highly popular in building distributed systems. It differs from MBA in the following way:
 - Semantically: in case of EBA, a message is called Event, and it states a completed fact; interested parties might react to the fact or ignore it.
-- Delivery model: usually, the Publisher/Subscriber (Pub/Sub) model is used, with 1-to-many relation between the producer and the consumers.
+- Distribution model: usually, the Publisher/Subscriber (Pub/Sub) model is used, with 1-to-many relation between the producer and the consumers.
 - Primary use cases: real-time event streaming, notifications, audit logging.
 
 ### 2. What is Message Broker? How do message brokers work?
 
+Message Broker is a software solution which facilitates asynchronous message-based communication between services, systems, or applications. Messages are reliably and durably collected in message queues, and the solution must guarantee message delivery. In addition, data routing, message translation, client state management features are supplied by the broker.
 
+Advantages of MBs: 
+- Reliablity via delivery guarantees (message persistence, mechanism of retries, and dead letter queue)
+- Performance via asynchronous message processing
+- Fault-tolerance via ability to wait for the consumer to become online or healthy
+
+Disadvantages:
+- Added complexity to the architecture (as another piece of software is added as middleware)
+- More effortful debugging and logging due to the distributed and asynchronous nature
+
+There are two main message distribution models used in MBs:
+- Point-to-point (1-to-1 relationship): one producer is bound to a single consumer
+- Publish/Subscribe (1-to-many relationship): a producer (publisher) emits a message (to a so-called topic), which may be consumed by 0 or more interested subscribers
 
 ### 3. When should you use message brokers?
 
