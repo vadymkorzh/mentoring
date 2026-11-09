@@ -54,6 +54,8 @@ Disadvantages:
 
 ### 6. What is the difference between Queue and Topic?
 
+Queue is a backbone data structure used in Point-To-Point distribution model. If there are several consumers listening to a single queue, the load is distributed among the available processors (each consumer dequeues and works with a separate message). Once a consumer confirms successful completion of processing, the message is removed from the queue.
 
+On the other hand, a topic collects a series of messages which are distributed evenly among the subscribers (a copy of every message to every consumer). Often, the messages are persisted in the topic for some pre-configured amount of time for new subscribers to have ability to consume data retrospectively. Topics are used in the Pub/Sub distribution model.
 
 ### 7. What are the typical failures in MBA? How can you address them? What is Saga pattern?
