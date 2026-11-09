@@ -59,3 +59,23 @@ Queue is a backbone data structure used in Point-To-Point distribution model. If
 On the other hand, a topic collects a series of messages which are distributed evenly among the subscribers (a copy of every message to every consumer). Often, the messages are persisted in the topic for some pre-configured amount of time for new subscribers to have ability to consume data retrospectively. Topics are used in the Pub/Sub distribution model.
 
 ### 7. What are the typical failures in MBA? How can you address them? What is Saga pattern?
+
+There are several typical MBA failures:
+
+1. Poison messages: some messages might cause the consumer to fail (either because of validation issues or some other error) and return to the queue; thus, they are retried again and again, not allowing consequent messages to be processed; such messages are called poison messages.
+
+    Solution: isolate poison messages in a special queue - Dead Letter Queue - and handle it separately; make consumer idempotent.
+
+1. Dropped messages: either the broker or the consumer may crash as soon as they acknowledge a message; it may lead to the message to be dropped and lost.
+
+    Solution: acknowledge messages on the broker or consumer side only when it is successfully processed; configure persistence (storing messages on a drive).
+
+1. Message duplication: message brokers can't guarantee 100% only-once delivery, sometimes message duplications occurs.
+
+    Solution: make message processing idempotent.
+
+Pattern Saga is a distributed systems pattern widely used in microservices architectural style. It helps maintain transactional consistency of a distributed data operation. In case of a data operation that spans more than a single data store, a series of updates may be planned by the Saga pattern, which eventually (in case of success) lead the system to the desired state. If a failure occurs, there should be a compensatory mechanism in form of compensation transactions that will revert the changes made.
+
+There are two main ways to implement the pattern: either using Choreography pattern (no central controller that handles the logic of the transaction) or Orchestrator pattern (with a dedicated sevice managing the flow). Each way implies usage of a message broker as an intermediary that provides message management.
+
+
