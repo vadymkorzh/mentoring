@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CartService.BLL/CartService.BLL.csproj" Id="062f11af-1c52-4331-81db-ba178f198973" />
+  <Project Path="CartService.DAL/CartService.DAL.csproj" Id="a13554ca-c87a-4fc2-9fc2-68c5ab1c6c21" />
+  <Project Path="CartService.Infrastructure/CartService.Infrastructure.csproj" Id="c8f46b9d-c11f-407e-83bc-beb96be00ad2" />
+  <Project Path="CartService.Tests/CartService.Tests.csproj" Id="2ca18a7d-5211-48b4-a22e-23b67c36dd69" />
+  <Project Path="CartService.Web/CartService.Web.csproj" Id="91936602-4bba-44f1-9db8-059de7878a9e" />
+</Solution>
