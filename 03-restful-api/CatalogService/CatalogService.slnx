@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="CatalogService.BLL/CatalogService.BLL.csproj" Id="fe81fbe7-84dc-4e0e-a550-9444884539c4" />
+  <Project Path="CatalogService.DAL/CatalogService.DAL.csproj" />
+  <Project Path="CatalogService.Tests/CatalogService.Tests.csproj" />
+  <Project Path="CatalogService.Web/CatalogService.Web.csproj" Id="359dd115-56f5-4137-b377-60859eb32b4a" />
+</Solution>
