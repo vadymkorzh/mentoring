@@ -2,5 +2,4 @@
 
 public abstract class MessageBase
 {
-    public required string MessageId { get; init; }
 }

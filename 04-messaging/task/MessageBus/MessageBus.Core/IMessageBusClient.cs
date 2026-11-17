@@ -2,6 +2,6 @@
 
 public interface IMessageBusClient
 {
-    IMessageBusReceiver CreateSender();
+    IMessageBusSender CreateSender();
     IMessageBusReceiver CreateReceiver();
 }

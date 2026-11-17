@@ -4,5 +4,5 @@ namespace MessageBus.Core;
 
 public interface IMessageBusSender
 {
-    Task SendItemUpdate(ProductUpdate update);
+    Task SendProductUpdate(ProductUpdate update);
 }
