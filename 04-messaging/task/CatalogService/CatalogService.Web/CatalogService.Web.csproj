@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MessageBus\MessageBus.AzureServiceBus\MessageBus.AzureServiceBus.csproj" />
+    <ProjectReference Include="..\..\MessageBus\MessageBus.Core\MessageBus.Core.csproj" />
     <ProjectReference Include="..\CatalogService.BLL\CatalogService.BLL.csproj" />
   </ItemGroup>
 

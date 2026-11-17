@@ -25,6 +25,8 @@ builder.Services.AddApiVersioning(options =>
 
 builder.Services.AddLogging();
 
+builder.Services.AddMessageBus(builder.Configuration);
+
 builder.Services.AddScoped<ICartRepository, LiteDbCartRepository>();
 builder.Services.AddScoped<CartManager>();
 

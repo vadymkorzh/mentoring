@@ -20,6 +20,8 @@ builder.Services.AddApiVersioning(options =>
 })
 .AddOpenApi();
 
+builder.Services.AddMessageBus(builder.Configuration);
+
 builder.Services.AddSingleton(typeof(IRepository<>), typeof(InMemoryRepository<>));
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
