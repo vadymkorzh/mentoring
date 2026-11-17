@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/CartService/">
+    <Project Path="CartService/CartService.BLL/CartService.BLL.csproj" />
+    <Project Path="CartService/CartService.DAL/CartService.DAL.csproj" />
+    <Project Path="CartService/CartService.Infrastructure/CartService.Infrastructure.csproj" />
+    <Project Path="CartService/CartService.Tests/CartService.Tests.csproj" />
+    <Project Path="CartService/CartService.Web/CartService.Web.csproj" />
+  </Folder>
+  <Folder Name="/CatalogService/">
+    <Project Path="CatalogService/CatalogService.BLL/CatalogService.BLL.csproj" />
+    <Project Path="CatalogService/CatalogService.DAL/CatalogService.DAL.csproj" />
+    <Project Path="CatalogService/CatalogService.Tests/CatalogService.Tests.csproj" />
+    <Project Path="CatalogService/CatalogService.Web/CatalogService.Web.csproj" />
+  </Folder>
+  <Folder Name="/MessageBus/">
+    <Project Path="MessageBus/MessageBus.AzureServiceBus/MessageBus.AzureServiceBus.csproj" />
+    <Project Path="MessageBus/MessageBus.Core/MessageBus.Core.csproj" />
+  </Folder>
+</Solution>

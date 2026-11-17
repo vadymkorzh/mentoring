@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="MessageBus.AzureServiceBus/MessageBus.AzureServiceBus.csproj" Id="0a728b1b-7e49-46ef-84d8-79875c8e3381" />
-  <Project Path="MessageBus.Core/MessageBus.Core.csproj" />
-</Solution>
