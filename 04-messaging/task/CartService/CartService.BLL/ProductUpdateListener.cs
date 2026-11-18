@@ -1,4 +1,5 @@
-﻿using MessageBus.Core;
+﻿using CartService.DAL.Models;
+using MessageBus.Core;
 using MessageBus.Core.Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,11 +15,11 @@ public class ProductUpdateListener : BackgroundService
 
     public ProductUpdateListener(
         ILogger<ProductUpdateListener> logger,
-        IMessageBusReceiver receiver,
+        IMessageBusClient messageBusClient,
         IServiceProvider serviceProvider)
     {
         _logger = logger;
-        _receiver = receiver;
+        _receiver = messageBusClient.CreateReceiver();
         _serviceProvider = serviceProvider;
     }
 
@@ -35,7 +36,12 @@ public class ProductUpdateListener : BackgroundService
                 {
                     using IServiceScope scope = _serviceProvider.CreateScope();
                     var cartManager = scope.ServiceProvider.GetRequiredService<CartManager>();
-                    // update carts
+
+                    IList<Cart> carts = await cartManager.GetAllCartsAsync();
+                    foreach (Cart cart in carts)
+                    {
+                        await UpdateCart(cartManager, cart, message.Payload);
+                    }
 
                     await _receiver.CompleteMessageAsync(message);
                 }
@@ -49,6 +55,27 @@ public class ProductUpdateListener : BackgroundService
         catch (OperationCanceledException)
         {
             _logger.LogInformation("Product update listener stopped.");
+        }
+    }
+
+    private static async Task UpdateCart(CartManager manager, Cart cart, ProductUpdate productUpdate)
+    {
+        int productId = productUpdate.ProductId;
+        foreach (CartItem item in cart.GetItems())
+        {
+            if (item.Id == productId)
+            {
+                CartItem newItem = new()
+                {
+                    Id = item.Id,
+                    Image = item.Image,
+                    Name = productUpdate.Name ?? item.Name,
+                    Price = productUpdate.Price ?? item.Price,
+                    Quantity = productUpdate.Amount ?? item.Quantity
+                };
+                await manager.RemoveItemFromCartAsync(cart.Key, item.Id);
+                await manager.AddItemToCartAsync(cart.Key, newItem);
+            }
         }
     }
 }

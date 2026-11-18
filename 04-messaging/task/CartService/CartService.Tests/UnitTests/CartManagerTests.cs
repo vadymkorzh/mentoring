@@ -11,6 +11,9 @@ public class CartManagerTests
     {
         private readonly Dictionary<string, Cart> _carts = [];
 
+        public Task<IList<Cart>> GetAllCartsAsync()
+            => Task.FromResult((IList<Cart>)_carts.Values.ToList());
+ 
         public Task<Cart?> GetCartAsync(string key) =>
             Task.FromResult(_carts.TryGetValue(key, out Cart? cart) ? cart : null);
 

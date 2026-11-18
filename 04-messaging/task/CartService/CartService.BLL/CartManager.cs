@@ -7,6 +7,8 @@ public class CartManager(ICartRepository cartRepository)
 {
     private readonly ICartRepository _cartRepository = cartRepository;
 
+    public Task<IList<Cart>> GetAllCartsAsync() => _cartRepository.GetAllCartsAsync();
+
     public async Task<IList<CartItem>?> GetCartItemsAsync(string cartKey)
     {
         Cart? cart = await _cartRepository.GetCartAsync(cartKey);

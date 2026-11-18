@@ -28,6 +28,14 @@ public class LiteDbCartRepository(string databasePath = "cart-service.db") : ICa
             });
     }
 
+    public Task<IList<Cart>> GetAllCartsAsync()
+    {
+        using var db = new LiteDatabase(_databasePath);
+        var carts = db.GetCollection<Cart>("carts");
+
+        return Task.FromResult((IList<Cart>)carts.FindAll().ToList());
+    }
+
     public Task<Cart?> GetCartAsync(string key)
     {
         using var db = new LiteDatabase(_databasePath);

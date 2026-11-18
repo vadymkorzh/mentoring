@@ -13,17 +13,21 @@ internal class AzureServiceBusReceiver(ServiceBusReceiver receiver) : IMessageBu
     public async IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync()
     {
         ServiceBusReceivedMessage sbMessage = await _receiver.ReceiveMessageAsync();
-        _messages.Add(sbMessage);
-        ProductUpdate? productUpdate = sbMessage.Body.ToObjectFromJson<ProductUpdate>();
 
-        if (productUpdate != null)
+        if (sbMessage != null)
         {
-            Message<ProductUpdate> message = new()
+            _messages.Add(sbMessage);
+            ProductUpdate? productUpdate = sbMessage.Body.ToObjectFromJson<ProductUpdate>();
+
+            if (productUpdate != null)
             {
-                MessageId = sbMessage.MessageId,
-                Payload = productUpdate
-            };
-            yield return message;
+                Message<ProductUpdate> message = new()
+                {
+                    MessageId = sbMessage.MessageId,
+                    Payload = productUpdate
+                };
+                yield return message;
+            }
         }
     }
 
