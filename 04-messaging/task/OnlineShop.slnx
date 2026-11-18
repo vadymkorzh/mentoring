@@ -9,6 +9,7 @@
   <Folder Name="/CatalogService/">
     <Project Path="CatalogService/CatalogService.BLL/CatalogService.BLL.csproj" />
     <Project Path="CatalogService/CatalogService.DAL/CatalogService.DAL.csproj" />
+    <Project Path="CatalogService/CatalogService.Infrastructure/CatalogService.Infrastructure.csproj" Id="2d4d4f78-de13-4e4f-a89d-1b50a817df56" />
     <Project Path="CatalogService/CatalogService.Tests/CatalogService.Tests.csproj" />
     <Project Path="CatalogService/CatalogService.Web/CatalogService.Web.csproj" />
   </Folder>

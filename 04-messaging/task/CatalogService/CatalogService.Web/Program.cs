@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using CatalogService.BLL.Services;
 using CatalogService.DAL.Services;
+using CatalogService.Infrastructure.EfCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ builder.Services.AddApiVersioning(options =>
 
 builder.Services.AddMessageBus(builder.Configuration);
 
-builder.Services.AddSingleton(typeof(IRepository<>), typeof(InMemoryRepository<>));
+builder.Services.AddEfCoreRepositories(builder.Configuration.GetConnectionString("Default")!);
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<ProductService>();
 

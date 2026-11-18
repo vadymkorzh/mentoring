@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\MessageBus\MessageBus.AzureServiceBus\MessageBus.AzureServiceBus.csproj" />
     <ProjectReference Include="..\..\MessageBus\MessageBus.Core\MessageBus.Core.csproj" />
     <ProjectReference Include="..\CatalogService.BLL\CatalogService.BLL.csproj" />
+    <ProjectReference Include="..\CatalogService.Infrastructure\CatalogService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
