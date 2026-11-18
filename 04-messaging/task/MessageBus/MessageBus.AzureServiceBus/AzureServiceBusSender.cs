@@ -8,7 +8,7 @@ internal class AzureServiceBusSender(ServiceBusSender sender) : IMessageBusSende
 {
     private readonly ServiceBusSender _sender = sender;
 
-    public async Task SendProductUpdate(ProductUpdate update)
+    public async Task SendProductUpdateAsync(ProductUpdate update)
     {
         var message = new ServiceBusMessage(new BinaryData(update));
         try

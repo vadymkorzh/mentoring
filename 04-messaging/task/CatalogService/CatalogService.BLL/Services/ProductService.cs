@@ -38,6 +38,6 @@ public class ProductService(IRepository<Product> products, IMessageBusClient mes
             Price = product.Price,
             Amount = product.Amount
         };
-        await sender.SendProductUpdate(update);
+        await sender.SendProductUpdateAsync(update);
     }
 }

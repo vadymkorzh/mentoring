@@ -1,6 +1,6 @@
 ﻿namespace MessageBus.Core.Messages;
 
-public class ProductUpdate : MessageBase
+public class ProductUpdate : MessagePayload
 {
     public required int ProductId { get; init; }
     public string? Name { get; init; }

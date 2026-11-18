@@ -1,21 +1,51 @@
 ﻿using Azure.Messaging.ServiceBus;
 using MessageBus.Core;
 using MessageBus.Core.Messages;
+using System.Collections.Concurrent;
 
 namespace MessageBus.AzureServiceBus;
 
 internal class AzureServiceBusReceiver(ServiceBusReceiver receiver) : IMessageBusReceiver, IAsyncDisposable
 {
     private readonly ServiceBusReceiver _receiver = receiver;
+    private readonly List<ServiceBusReceivedMessage> _messages = [];
 
-    public async IAsyncEnumerable<ProductUpdate> ReceiveProductUpdates()
+    public async IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync()
     {
-        ServiceBusReceivedMessage message = await _receiver.ReceiveMessageAsync();
-        ProductUpdate? productUpdate = message.Body.ToObjectFromJson<ProductUpdate>();
+        ServiceBusReceivedMessage sbMessage = await _receiver.ReceiveMessageAsync();
+        _messages.Add(sbMessage);
+        ProductUpdate? productUpdate = sbMessage.Body.ToObjectFromJson<ProductUpdate>();
 
         if (productUpdate != null)
         {
-            yield return productUpdate;
+            Message<ProductUpdate> message = new()
+            {
+                MessageId = sbMessage.MessageId,
+                Payload = productUpdate
+            };
+            yield return message;
+        }
+    }
+
+    public async Task CompleteMessageAsync(Message message)
+    {
+        ServiceBusReceivedMessage? sbMessage
+            = _messages.FirstOrDefault(x => x.MessageId == message.MessageId);
+        if (sbMessage != null)
+        {
+            await _receiver.CompleteMessageAsync(sbMessage);
+            _messages.Remove(sbMessage);
+        }
+    }
+
+    public async Task AbandonMessageAsync(Message message)
+    {
+        ServiceBusReceivedMessage? sbMessage
+            = _messages.FirstOrDefault(x => x.MessageId == message.MessageId);
+        if (sbMessage != null)
+        {
+            await _receiver.AbandonMessageAsync(sbMessage);
+            _messages.Remove(sbMessage);
         }
     }
 

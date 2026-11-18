@@ -4,5 +4,7 @@ namespace MessageBus.Core;
 
 public interface IMessageBusReceiver
 {
-    IAsyncEnumerable<ProductUpdate> ReceiveProductUpdates();
+    IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync();
+    Task CompleteMessageAsync(Message message);
+    Task AbandonMessageAsync(Message message);
 }

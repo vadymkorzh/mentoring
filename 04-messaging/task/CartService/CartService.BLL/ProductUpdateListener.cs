@@ -28,22 +28,21 @@ public class ProductUpdateListener : BackgroundService
 
         try
         {
-            await foreach (ProductUpdate? update in _receiver.ReceiveProductUpdates().WithCancellation(stoppingToken))
+            await foreach (Message<ProductUpdate> message in _receiver.ReceiveProductUpdatesAsync()
+                .WithCancellation(stoppingToken))
             {
                 try
                 {
-                    if (update != null)
-                    {
-                        using IServiceScope scope = _serviceProvider.CreateScope();
-                        var cartManager = scope.ServiceProvider.GetRequiredService<CartManager>();
-                        // update carts
-                    }
-                    // complete message
+                    using IServiceScope scope = _serviceProvider.CreateScope();
+                    var cartManager = scope.ServiceProvider.GetRequiredService<CartManager>();
+                    // update carts
+
+                    await _receiver.CompleteMessageAsync(message);
                 }
                 catch (Exception)
                 {
-                    _logger.LogError("Error processing catalog update message {MessageID}", update.MessageId);
-                    // abandon message
+                    _logger.LogError("Error processing catalog update message {MessageID}", message.MessageId);
+                    await _receiver.AbandonMessageAsync(message);
                 }
             }
         }
