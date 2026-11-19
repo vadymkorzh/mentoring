@@ -21,19 +21,37 @@ public class ProductController(ProductService productService) : ControllerBase
         return Ok(result.ToDto(p => p.ToDto()));
     }
 
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<ProductDto>> GetById(int id)
+    {
+        try
+        {
+            var product = await _productService.GetAsync(id);
+
+            return Ok(product.ToDto());
+        }
+        catch (NotFoundException)
+        {
+            return NotFound();
+        }
+    }
+
     [HttpPost]
     public async Task<ActionResult<ProductDto>> Add(ProductRequest request)
     {
         var product = await _productService.AddAsync(request.ToEntity());
         var dto = product.ToDto();
+        ApiVersion? version = HttpContext.Features.Get<IApiVersioningFeature>()?.RequestedApiVersion;
+        string basePath = $"/api/v{version}/products";
         dto.Links =
         [
-            new LinkDto { Rel = "update", Href = $"/products/{dto.Id}", Method = "PUT" },
-            new LinkDto { Rel = "delete", Href = $"/products/{dto.Id}", Method = "DELETE" },
-            new LinkDto { Rel = "collection", Href = "/products", Method = "GET" }
+            new LinkDto { Rel = "self", Href = $"{basePath}/{dto.Id}", Method = "GET" },
+            new LinkDto { Rel = "update", Href = $"{basePath}/{dto.Id}", Method = "PUT" },
+            new LinkDto { Rel = "delete", Href = $"{basePath}/{dto.Id}", Method = "DELETE" },
+            new LinkDto { Rel = "collection", Href = basePath, Method = "GET" }
         ];
 
-        return Created($"/products/{dto.Id}", dto);
+        return Created($"{basePath}/{dto.Id}", dto);
     }
 
     [HttpPut("{id:int}")]

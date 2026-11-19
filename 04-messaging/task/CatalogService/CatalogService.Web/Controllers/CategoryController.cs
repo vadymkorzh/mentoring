@@ -22,19 +22,37 @@ public class CategoryController(CategoryService categoryService) : ControllerBas
         return Ok(categories.Select(c => c.ToDto()));
     }
 
+    [HttpGet("{id:int}")]
+    public async Task<ActionResult<CategoryDto>> GetById(int id)
+    {
+        try
+        {
+            var category = await _categoryService.GetAsync(id);
+
+            return Ok(category.ToDto());
+        }
+        catch (NotFoundException)
+        {
+            return NotFound();
+        }
+    }
+
     [HttpPost]
     public async Task<ActionResult<CategoryDto>> Add(CategoryRequest request)
     {
         var category = await _categoryService.AddAsync(request.ToEntity());
         var dto = category.ToDto();
+        ApiVersion? version = HttpContext.Features.Get<IApiVersioningFeature>()?.RequestedApiVersion;
+        string basePath = $"/api/v{version}/categories";
         dto.Links =
         [
-            new LinkDto { Rel = "update", Href = $"/categories/{dto.Id}", Method = "PUT" },
-            new LinkDto { Rel = "delete", Href = $"/categories/{dto.Id}", Method = "DELETE" },
-            new LinkDto { Rel = "collection", Href = "/categories", Method = "GET" }
+            new LinkDto { Rel = "self", Href = $"{basePath}/{dto.Id}", Method = "GET" },
+            new LinkDto { Rel = "update", Href = $"{basePath}/{dto.Id}", Method = "PUT" },
+            new LinkDto { Rel = "delete", Href = $"{basePath}/{dto.Id}", Method = "DELETE" },
+            new LinkDto { Rel = "collection", Href = basePath, Method = "GET" }
         ];
 
-        return Created($"/categories/{dto.Id}", dto);
+        return Created($"{basePath}/{dto.Id}", dto);
     }
 
     [HttpPut("{id:int}")]

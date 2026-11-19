@@ -15,6 +15,9 @@ public class ProductService(IRepository<Product> products, IMessageBusClient mes
 
     public Task<Product> AddAsync(Product product) => _products.AddAsync(product);
 
+    public async Task<Product> GetAsync(int id) =>
+        await _products.GetAsync(id) ?? throw new NotFoundException(typeof(Product).Name, id);
+
     public async Task UpdateAsync(Product product)
     {
         _ = await _products.GetAsync(product.Id)
