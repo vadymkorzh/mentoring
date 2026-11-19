@@ -1,7 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
 using MessageBus.Core;
 using MessageBus.Core.Messages;
-using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
 
 namespace MessageBus.AzureServiceBus;
 
@@ -10,11 +10,9 @@ internal class AzureServiceBusReceiver(ServiceBusReceiver receiver) : IMessageBu
     private readonly ServiceBusReceiver _receiver = receiver;
     private readonly List<ServiceBusReceivedMessage> _messages = [];
 
-    public async IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync()
+    public async IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync([EnumeratorCancellation] CancellationToken token)
     {
-        ServiceBusReceivedMessage sbMessage = await _receiver.ReceiveMessageAsync();
-
-        if (sbMessage != null)
+        await foreach (ServiceBusReceivedMessage sbMessage in _receiver.ReceiveMessagesAsync(token))
         {
             _messages.Add(sbMessage);
             ProductUpdate? productUpdate = sbMessage.Body.ToObjectFromJson<ProductUpdate>();

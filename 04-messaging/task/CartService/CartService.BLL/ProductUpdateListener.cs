@@ -29,7 +29,7 @@ public class ProductUpdateListener : BackgroundService
 
         try
         {
-            await foreach (Message<ProductUpdate> message in _receiver.ReceiveProductUpdatesAsync()
+            await foreach (Message<ProductUpdate> message in _receiver.ReceiveProductUpdatesAsync(stoppingToken)
                 .WithCancellation(stoppingToken))
             {
                 try
