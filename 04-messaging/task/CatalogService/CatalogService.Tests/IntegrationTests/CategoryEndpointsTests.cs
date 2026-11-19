@@ -20,13 +20,13 @@ public class CategoryEndpointsTests : IClassFixture<WebApplicationFactory<Progra
     {
         var request = new CategoryRequest { Name = "Electronics" };
 
-        var postResponse = await _client.PostAsJsonAsync("/categories", request);
+        var postResponse = await _client.PostAsJsonAsync("/api/v1/categories", request);
         Assert.Equal(HttpStatusCode.Created, postResponse.StatusCode);
 
         var created = await postResponse.Content.ReadFromJsonAsync<CategoryDto>();
         Assert.NotNull(created);
 
-        var listResponse = await _client.GetAsync("/categories");
+        var listResponse = await _client.GetAsync("/api/v1/categories");
         listResponse.EnsureSuccessStatusCode();
 
         var categories = await listResponse.Content.ReadFromJsonAsync<List<CategoryDto>>();
