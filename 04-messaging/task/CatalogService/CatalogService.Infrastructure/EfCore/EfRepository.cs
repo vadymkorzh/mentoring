@@ -21,7 +21,7 @@ public class EfRepository<T>(CatalogDbContext context) : IRepository<T> where T 
             items = items.Where(filter);
         }
         items = items
-            .Skip(page * pageSize)
+            .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToList();
 
