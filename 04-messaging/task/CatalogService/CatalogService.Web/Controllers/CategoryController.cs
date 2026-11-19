@@ -40,9 +40,16 @@ public class CategoryController(CategoryService categoryService) : ControllerBas
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, CategoryRequest request)
     {
-        await _categoryService.UpdateAsync(request.ToEntity(id));
+        try
+        {
+            await _categoryService.UpdateAsync(request.ToEntity(id));
 
-        return NoContent();
+            return NoContent();
+        }
+        catch (NotFoundException)
+        {
+            return NotFound();
+        }
     }
 
     [HttpDelete("{id:int}")]

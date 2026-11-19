@@ -14,7 +14,12 @@ public class CategoryService(IRepository<Category> categories, IRepository<Produ
 
     public Task<Category> AddAsync(Category category) => _categories.AddAsync(category);
 
-    public Task UpdateAsync(Category category) => _categories.UpdateAsync(category);
+    public async Task UpdateAsync(Category category)
+    {
+        _ = await _categories.GetAsync(category.Id)
+            ?? throw new NotFoundException(typeof(Category).Name, category.Id);
+        await _categories.UpdateAsync(category);
+    }
 
     public async Task DeleteAsync(int id)
     {

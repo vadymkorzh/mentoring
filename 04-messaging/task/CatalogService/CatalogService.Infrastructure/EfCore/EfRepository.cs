@@ -42,7 +42,19 @@ public class EfRepository<T>(CatalogDbContext context) : IRepository<T> where T 
 
     public async Task UpdateAsync(T entity)
     {
-        context.Entry(entity).State = EntityState.Modified;
+        T? tracked = context.ChangeTracker.Entries<T>()
+            .Select(e => e.Entity)
+            .FirstOrDefault(e => e.Id == entity.Id);
+
+        if (tracked is not null && !ReferenceEquals(tracked, entity))
+        {
+            context.Entry(tracked).CurrentValues.SetValues(entity);
+        }
+        else
+        {
+            context.Entry(entity).State = EntityState.Modified;
+        }
+
         await context.SaveChangesAsync();
     }
 

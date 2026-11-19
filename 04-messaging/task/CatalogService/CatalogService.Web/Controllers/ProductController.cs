@@ -39,9 +39,16 @@ public class ProductController(ProductService productService) : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, ProductRequest request)
     {
-        await _productService.UpdateAsync(request.ToEntity(id));
+        try
+        {
+            await _productService.UpdateAsync(request.ToEntity(id));
 
-        return NoContent();
+            return NoContent();
+        }
+        catch (NotFoundException)
+        {
+            return NotFound();
+        }
     }
 
     [HttpDelete("{id:int}")]
