@@ -4,7 +4,7 @@ namespace MessageBus.Core;
 
 public interface IMessageBusReceiver
 {
-    IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync(CancellationToken token = CancellationToken.None);
+    IAsyncEnumerable<Message<ProductUpdate>> ReceiveProductUpdatesAsync(CancellationToken token = default);
     Task CompleteMessageAsync(Message message);
     Task AbandonMessageAsync(Message message);
 }
