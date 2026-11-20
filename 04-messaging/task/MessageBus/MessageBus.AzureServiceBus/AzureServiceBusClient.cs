@@ -12,12 +12,13 @@ public class AzureServiceBusClient : IMessageBusClient, IAsyncDisposable
 
     public AzureServiceBusClient(AzureServiceBusClientConfiguration configuration)
     {
-        _sdkClient = new(configuration.FullyQualifiedNamespace,
-            configuration.Credential,
-            new ServiceBusClientOptions
-            {
-                TransportType = ServiceBusTransportType.AmqpWebSockets
-            });
+        _sdkClient = configuration.ConnectionString is not null
+            ? new ServiceBusClient(configuration.ConnectionString)
+            : new ServiceBusClient(configuration.FullyQualifiedNamespace, configuration.Credential,
+                new ServiceBusClientOptions
+                {
+                    TransportType = ServiceBusTransportType.AmqpWebSockets
+                });
 
         _configuration = configuration;
     }
