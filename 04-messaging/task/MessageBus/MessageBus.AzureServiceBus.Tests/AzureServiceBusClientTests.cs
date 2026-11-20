@@ -25,7 +25,6 @@ public class AzureServiceBusClientTests
 
         IMessageBusReceiver first = client.CreateReceiver();
         IMessageBusReceiver second = client.CreateReceiver();
-
         Assert.Same(first, second);
     }
 

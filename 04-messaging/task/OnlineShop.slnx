@@ -17,5 +17,6 @@
     <Project Path="MessageBus/MessageBus.AzureServiceBus.Tests/MessageBus.AzureServiceBus.Tests.csproj" />
     <Project Path="MessageBus/MessageBus.AzureServiceBus/MessageBus.AzureServiceBus.csproj" />
     <Project Path="MessageBus/MessageBus.Core/MessageBus.Core.csproj" />
+    <Project Path="MessageBus/MessageBus.Tests/MessageBus.Tests.csproj" Id="63846284-e699-4a05-9401-e133abf31654" />
   </Folder>
 </Solution>
