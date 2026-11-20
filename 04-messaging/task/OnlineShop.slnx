@@ -14,6 +14,7 @@
     <Project Path="CatalogService/CatalogService.Web/CatalogService.Web.csproj" />
   </Folder>
   <Folder Name="/MessageBus/">
+    <Project Path="MessageBus/MessageBus.AzureServiceBus.Tests/MessageBus.AzureServiceBus.Tests.csproj" />
     <Project Path="MessageBus/MessageBus.AzureServiceBus/MessageBus.AzureServiceBus.csproj" />
     <Project Path="MessageBus/MessageBus.Core/MessageBus.Core.csproj" />
   </Folder>
