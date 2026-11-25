@@ -2,8 +2,8 @@
 
 Authentication is a process of validating the identity of a user (human user, cloud service, IoT device, etc.). Authentication typically uses one or several factors. The factors are classified into three groups:
 - What you know (PIN, password)
-- What you have (smartfone, plastic card)
-- What you are (fingerprint, iris pattern)
+- What you have (smartphone, ID card)
+- What you are (fingerprint, iris pattern, voice)
 
 On the other hand, authorization stands for a process of determining what a user can do, which resources access. Access is determined with the use of rules, permissions, and policies. Authorization normally goes after successful authentication, although it also can do without authentication (anonymous access). 
 
@@ -13,7 +13,13 @@ On the other hand, authorization stands for a process of determining what a user
 
 ### 3. What exactly is Identity Management (Identity and Access Management)?
 
+Identity and Access Management (IAM) is a holistic process which embraces both authentication and authorization concerns. With IAM you can be sure your resources are accessed by right users with right permissions.
 
+Key capabilities of a mature IAM system include:
+- Seamless sign-up and sign-in experience
+- Variety of supported identity providers (Facebook, Apple, Azure Entra, etc.)
+- Support of multi-factor authentication
+- Role-based access control implementation
 
 ### 4. What authentication/authorization protocols do you know? What is the difference between OAuth & OpenID?
 
