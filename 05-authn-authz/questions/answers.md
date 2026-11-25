@@ -1,6 +1,11 @@
 ### 1. What is the difference between authentication and authorization?
 
+Authentication is a process of validating the identity of a user (human user, cloud service, IoT device, etc.). Authentication typically uses one or several factors. The factors are classified into three groups:
+- What you know (PIN, password)
+- What you have (smartfone, plastic card)
+- What you are (fingerprint, iris pattern)
 
+On the other hand, authorization stands for a process of determining what a user can do, which resources access. Access is determined with the use of rules, permissions, and policies. Authorization normally goes after successful authentication, although it also can do without authentication (anonymous access). 
 
 ### 2. What authorization approaches can you list? What is role-based access control?
 
