@@ -23,7 +23,17 @@ Key capabilities of a mature IAM system include:
 
 ### 4. What authentication/authorization protocols do you know? What is the difference between OAuth & OpenID?
 
+There are several protocols widely used in modern world:
 
+- OAuth 2.0 - open-source authorization standard; supports various flows
+- OpenID Connect (OIDC) - lightweight extension of OAuth, used for authentication
+- Security Assertion Markup Language (SAML) - widely used in enterprise solutions XML-based standard
+- Web Services Federation (WS-Fed) - protocol, widely used in Windows and Azure ecosystems
+
+OAuth and OIDC are very close but their purposes are different:
+
+- OAuth is an authorization standard; its flows make use of so called access tokens, which list user's permissions
+- OIDC is an authentication protocol build upon OAuth; its goal is to provide an ID token which contains user profile data.
 
 ### 5. What is Authentication/Authorization Token. What is JWT token? What other approaches except authentication/authorization, can we use with security token?
 
