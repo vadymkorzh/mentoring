@@ -37,7 +37,24 @@ OAuth and OIDC are very close but their purposes are different:
 
 ### 5. What is Authentication/Authorization Token. What is JWT token? What other approaches except authentication/authorization, can we use with security token?
 
+An authentication/authorization token is a secure string that being presented by a client, let's them be authenticated/authorized to the system. 
+The most common forms of tokens are:
+- JWT token (explained further)
+- opaque string (usually, a key to the session data stored on the server)
+- API Key (token assigned to the client to identify it)
 
+JWT token is self-contained, and enables stateless interaction. Opaque tokens and API keys presume some sort of state persisted.
+
+JWT stands for JSON Web Token, and it's a standard used for safe transfer of sets of key-value entries. In its most popular variant, a JWT token consists of three parts:
+- header (representing metadata)
+- payload (containing the useful business data itself)
+- signature (cryptographic footprint of header + payload)
+These parts are JSON objects, and the JWT token is a period-separated string of Base64 representations of these parts. There are unsigned and encrypted versions of JWT also available in the standard.
+
+There are some other applications of security tokens:
+- client-side safe session storage (e.g., a JWT signed by the server)
+- data exchange integrity (with the help of the signature)
+- password reset, e-mail verification links (JWT is sent as a query string parameter)
 
 ### 6. What is Single Sign-On (SSO)? Name the steps to implement SSO. What are the benefits of SSO?
 
