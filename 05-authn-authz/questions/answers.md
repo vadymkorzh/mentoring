@@ -68,6 +68,11 @@ There are some other applications of security tokens:
 
 ### 7. What is the difference between Two-Factor Authentication and Multi-Factor Authentication?
 
+First, it is necessary to recall what kinds of authentication factors are there:
+- something you know (password, PIN)
+- something you have (smartphone, smart card)
+- something you are (iris pattern, fingerprint)
 
+In order to do MFA, you should check at least 2 factors from different groups (password + authenticator app, card + fingerprint, etc.) Two-factor authentication is just a subset of Multi-factor authentication, limited to exactly two factors used. MFA term is used as a general definition of authentication done with more than one factor.
 
 ### 8. Which of the OAuth flows can be used for user (customer) and which for client (server) authentication?
