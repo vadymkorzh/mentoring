@@ -9,7 +9,13 @@ On the other hand, authorization stands for a process of determining what a user
 
 ### 2. What authorization approaches can you list? What is role-based access control?
 
+These are the common authorization models in the modern world:
+- Role-based access control (RBAC): roles are sets of permissions; a role is assigned to a user
+- Mandatory access control (MAC): permissions are strictrly regulated centrally
+- Attribute-based access control (ABAC): fine-grained permissions (based on time, IP, or device used, etc.)
+- Claim-based access control (CBAC): used with microservices, OAuth 2.0, JWT
 
+The bedrock of the RBAC model is a role - a group of permissions. Every user or system gets an appropriate role, and if the user changes position in the company, a new role is assigned to them. Additionally, RBAC facilitates the Least Privilege principle, making the security posture more robust. On the flipside, in some cases the role-based approach renders itself too rigid for business rules of a company, and ABAC might be employed for a more fine-grained configuration.
 
 ### 3. What exactly is Identity Management (Identity and Access Management)?
 
