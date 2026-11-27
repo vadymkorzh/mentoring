@@ -76,3 +76,14 @@ First, it is necessary to recall what kinds of authentication factors are there:
 In order to do MFA, you should check at least 2 factors from different groups (password + authenticator app, card + fingerprint, etc.) Two-factor authentication is just a subset of Multi-factor authentication, limited to exactly two factors used. MFA term is used as a general definition of authentication done with more than one factor.
 
 ### 8. Which of the OAuth flows can be used for user (customer) and which for client (server) authentication?
+
+#### User authorization
+
+- Authorization Code Flow (with PKCE): a user logs in to the Auth Server, the client (app) receives a code and exchanges is for a token; this flow is a golden standard in modern world
+- Implicit Flow (now discouraged and deprecated): token is returned directly to the client via the front channel
+- Resource Owner Password Credentials (also obsolete): user shares his password with the client, and the client sends the credentials to the Authorization Server.
+
+#### Client authorization
+
+- Client Credentials Grant: used by apps, microservices; presumes the client secretly stores client_id and client_secret credentials, which are exchanged for a token.
+
