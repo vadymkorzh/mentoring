@@ -64,6 +64,20 @@ There are some other applications of security tokens:
 
 ### 6. What is Single Sign-On (SSO)? Name the steps to implement SSO. What are the benefits of SSO?
 
+Single Sign-On (SSO) is a mechanism that allows a user to log in once and gain access to multiple independent software systems, applications, or websites.
+
+The steps to implement SSO:
+- Choose an identity provider (IdP): MS Entra, Auth0, Okta, etc.
+- Configure trust relationships between the apps and the IdP
+- Configure protocols and attributes to use
+- Implement login flow in the application
+- Establish user session
+- Handle Single sign out (from all the connected apps at once)
+
+SSO brings the following benefits to users and companies:
+- Convenience (less credentials to create, remember and manage)
+- Security (users are encouraged to use stronger passwords and ready to do MFA)
+- Maintainability and auditing (single credential storage)
 
 
 ### 7. What is the difference between Two-Factor Authentication and Multi-Factor Authentication?
